@@ -12,7 +12,7 @@ class GreenifyHub extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Greenify Hub',
+      title: 'RuangHijau',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,

@@ -113,23 +113,6 @@ class DetailEventPage extends StatelessWidget {
             // Tombol Aksi
             Row(
               children: [
-                Expanded(
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      // Arahkan ke halaman QR
-                      Navigator.pushNamed(context, '/qr');
-                    },
-                    icon: const Icon(Icons.qr_code, color: Colors.white),
-                    label: const Text('Lihat QR Code'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green.shade700,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton.icon(
