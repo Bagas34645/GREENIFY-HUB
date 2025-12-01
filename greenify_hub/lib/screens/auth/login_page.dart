@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'register_page.dart';
-import '../home/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -14,13 +12,14 @@ class LoginPage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   'Selamat Datang',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 40),
+
+                // Email Input
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -30,6 +29,8 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
+
+                // Password Input
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -40,11 +41,14 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
+
+                // Login Button
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.pushNamedAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (_) => const HomePage()),
+                      '/home',
+                      (route) => false,
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -53,13 +57,11 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: const Text('Masuk', style: TextStyle(color: Colors.white)),
                 ),
+
                 const SizedBox(height: 12),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const RegisterPage()),
-                    );
+                    Navigator.pushNamed(context, '/register');
                   },
                   child: const Text("Belum punya akun? Daftar"),
                 ),

@@ -67,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  /// Edit Profil BottomSheet
   void _editProfile() {
     TextEditingController nameC = TextEditingController(text: name);
     TextEditingController emailC = TextEditingController(text: email);
@@ -100,10 +99,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  minimumSize: const Size(double.infinity, 45),
-                ),
                 onPressed: () {
                   setState(() {
                     name = nameC.text;
@@ -111,6 +106,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   });
                   Navigator.pop(context);
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  minimumSize: const Size(double.infinity, 45),
+                ),
                 child: const Text("Simpan"),
               ),
             ],
@@ -127,51 +126,51 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: const Text('Profil'),
         backgroundColor: Colors.green,
-        elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: _pickImage,
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: profileImage != null
-                      ? FileImage(profileImage!)
-                      : const AssetImage("assets/profile.jpg") as ImageProvider,
-                ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: _pickImage,
+              child: CircleAvatar(
+                radius: 60,
+                backgroundImage: profileImage != null
+                    ? FileImage(profileImage!)
+                    : const AssetImage("assets/profile.jpg") as ImageProvider,
               ),
-              const SizedBox(height: 10),
-              Text(
-                name,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(email, style: const TextStyle(color: Colors.grey)),
-              const SizedBox(height: 30),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              name,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            Text(email, style: const TextStyle(color: Colors.grey)),
+            const SizedBox(height: 30),
 
-              _buildMenuItem(Icons.edit, "Edit Profil", _editProfile),
-              _buildMenuItem(Icons.settings, "Pengaturan", () {}),
-              _buildMenuItem(Icons.help_outline, "Bantuan", () {}),
-              _buildMenuItem(Icons.info_outline, "Tentang Aplikasi", () {}),
+            _buildMenuItem(Icons.edit, "Edit Profil", _editProfile),
+            _buildMenuItem(Icons.settings, "Pengaturan", () {}),
+            _buildMenuItem(Icons.help_outline, "Bantuan", () {}),
+            _buildMenuItem(Icons.info_outline, "Tentang Aplikasi", () {}),
+            const SizedBox(height: 25),
 
-              const SizedBox(height: 25),
-              ElevatedButton.icon(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 238, 236, 236),
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                icon: const Icon(Icons.logout),
-                label: const Text('Logout'),
+            ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/login',
+                  (route) => false,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 238, 236, 236),
+                minimumSize: const Size(double.infinity, 50),
               ),
-            ],
-          ),
+              icon: const Icon(Icons.logout),
+              label: const Text('Logout'),
+            ),
+          ],
         ),
       ),
     );
