@@ -9,7 +9,6 @@ class BerandaPage extends StatefulWidget {
 }
 
 class _BerandaPageState extends State<BerandaPage> {
-  // Simulasi data postingan
   List<Map<String, dynamic>> posts = [
     {
       "username": "Eco Station",
@@ -128,6 +127,7 @@ class _BerandaPageState extends State<BerandaPage> {
               fit: BoxFit.cover,
             ),
           ),
+
           const SizedBox(height: 8),
 
           Row(
@@ -151,9 +151,13 @@ class _BerandaPageState extends State<BerandaPage> {
 
               GestureDetector(
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("📌 Fitur komentar belom dibuat"),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => CommentPage(
+                        username: post["username"],
+                        imageUrl: post["imageUrl"],
+                      ),
                     ),
                   );
                 },
@@ -175,9 +179,11 @@ class _BerandaPageState extends State<BerandaPage> {
               const Icon(Icons.bookmark_border),
             ],
           ),
+
           const SizedBox(height: 6),
 
           Text(post["caption"], style: const TextStyle(fontSize: 14)),
+
           const SizedBox(height: 8),
         ],
       ),
